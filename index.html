@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nikhil Gupta | Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        
+        :root {
+            --primary: #4f8cff;
+            --secondary: #232946;
+            --accent: #eebbc3;
+            --bg: #f4f4f4;
+            --white: #fff;
+            --dark: #121212;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', sans-serif;
+        }
+        body {
+            background: var(--bg);
+            color: var(--secondary);
+            min-height: 100vh;
+            scroll-behavior: smooth;
+        }
+        header {
+            background: var(--secondary);
+            color: var(--white);
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            transition: background 0.3s;
+        }
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--primary);
+            text-shadow: 1px 1px 8px #0002;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            position: relative;
+            transition: color 0.2s;
+        }
+        .nav-links a::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s;
+            position: absolute;
+            left: 0;
+            bottom: -4px;
+        }
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+        .menu-toggle span {
+            width: 28px;
+            height: 3px;
+            background: var(--white);
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+        main {
+            margin-top: 2rem;
+        }
+        section {
+            padding: 4rem 0 2rem 0;
+            min-height: 60vh;
+            animation: fadeIn 1s;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            gap: 1.5rem;
+            min-height: 70vh;
+        }
+        .hero h1 {
+            font-size: 2.8rem;
+            color: var(--secondary);
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        .hero h2 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+        .hero .cta {
+            background: var(--primary);
+            color: var(--white);
+            padding: 0.8rem 2.2rem;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 2px 8px #4f8cff33;
+            transition: background 0.2s, transform 0.2s;
+            margin-top: 1rem;
+        }
+        .hero .cta:hover {
+            background: var(--secondary);
+            color: var(--primary);
+            transform: translateY(-2px) scale(1.04);
+        }
+        .about {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+            text-align: center;
+        }
+        .about img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--primary);
+            box-shadow: 0 2px 12px #4f8cff22;
+            margin-bottom: 1rem;
+            animation: bounceIn 1.2s;
+        }
+        @keyframes bounceIn {
+            0% { transform: scale(0.7); opacity: 0; }
+            60% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(1); }
+        }
+        .about h2 {
+            color: var(--primary);
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        .about p {
+            max-width: 600px;
+            color: var(--secondary);
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+        .skills {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+        }
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem;
+            justify-content: center;
+        }
+        .skill {
+            background: var(--white);
+            color: var(--secondary);
+            padding: 1rem 2rem;
+            border-radius: 20px;
+            box-shadow: 0 2px 8px #4f8cff22;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+            border: 2px solid transparent;
+            animation: popIn 0.7s;
+        }
+        .skill:hover {
+            transform: scale(1.08) rotate(-2deg);
+            border: 2px solid var(--primary);
+            box-shadow: 0 4px 16px #4f8cff33;
+        }
+        @keyframes popIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .projects {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+        }
+        .project-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+        }
+        .project {
+            background: var(--white);
+            border-radius: 18px;
+            box-shadow: 0 2px 12px #4f8cff22;
+            padding: 1.5rem 1.2rem;
+            width: 300px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+            border: 2px solid transparent;
+            animation: fadeIn 1s;
+        }
+        .project:hover {
+            transform: translateY(-6px) scale(1.03);
+            border: 2px solid var(--primary);
+            box-shadow: 0 6px 24px #4f8cff33;
+        }
+        .project h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+        .project p {
+            color: var(--secondary);
+            font-size: 1rem;
+            margin-bottom: 0.7rem;
+        }
+        .project a {
+            color: var(--secondary);
+            text-decoration: underline;
+            font-size: 0.98rem;
+            transition: color 0.2s;
+        }
+        .project a:hover {
+            color: var(--primary);
+        }
+        .contact {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+            text-align: center;
+        }
+        .contact-form {
+            background: var(--white);
+            padding: 2rem 1.5rem;
+            border-radius: 18px;
+            box-shadow: 0 2px 12px #4f8cff22;
+            max-width: 400px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            animation: fadeIn 1s;
+        }
+        .contact-form input, .contact-form textarea {
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            border: 1.5px solid #ddd;
+            font-size: 1rem;
+            outline: none;
+            transition: border 0.2s;
+            resize: none;
+        }
+        .contact-form input:focus, .contact-form textarea:focus {
+            border: 1.5px solid var(--primary);
+        }
+        .contact-form button {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            border-radius: 8px;
+            padding: 0.8rem 0;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .contact-form button:hover {
+            background: var(--secondary);
+            color: var(--primary);
+        }
+        .footer {
+            background: var(--secondary);
+            color: var(--white);
+            text-align: center;
+            padding: 1.2rem 0 0.7rem 0;
+            font-size: 1rem;
+            margin-top: 2rem;
+            letter-spacing: 1px;
+        }
+        /* Responsive */
+        @media (max-width: 900px) {
+            .project-list {
+                flex-direction: column;
+                align-items: center;
+            }
+            .skills-list {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+        @media (max-width: 700px) {
+            .container {
+                width: 98%;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .about img {
+                width: 90px;
+                height: 90px;
+            }
+            .project {
+                width: 90vw;
+                max-width: 350px;
+            }
+        }
+        @media (max-width: 600px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 70px;
+                right: 0;
+                background: var(--secondary);
+                flex-direction: column;
+                width: 100vw;
+                gap: 1.5rem;
+                padding: 2rem 0;
+                box-shadow: 0 2px 12px #0002;
+                z-index: 99;
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .menu-toggle {
+                display: flex;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Nikhil Gupta</div>
+                <div class="menu-toggle" id="menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <div class="nav-links" id="nav-links">
+                    <a href="#home">Home</a>
+                    <a href="#about">About</a>
+                    <a href="#skills">Skills</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <section class="hero" id="home">
+            <h1>Hello, I'm <span style="color:var(--primary)">Nikhil Gupta</span></h1>
+            <h2>Web Developer | Designer | Tech Enthusiast</h2>
+            <p>Welcome to my modern portfolio! I build beautiful, responsive websites and web apps with a focus on user experience and performance.</p>
+            <button class="cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Contact Me</button>
+        </section>
+        <section class="about" id="about">
+            <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Nikhil Gupta" />
+            <h2>About Me</h2>
+            <p>
+                I'm Nikhil Gupta, a passionate web developer with a knack for creating engaging, interactive, and visually appealing digital experiences. I love to solve problems, learn new technologies, and collaborate on exciting projects. Let's build something amazing together!
+            </p>
+        </section>
+        <section class="skills" id="skills">
+            <h2 style="color:var(--primary);font-size:2rem;">Skills</h2>
+            <div class="skills-list">
+                <div class="skill">HTML5</div>
+                <div class="skill">CSS3</div>
+                <div class="skill">JavaScript</div>
+                <div class="skill">React</div>
+                <div class="skill">Node.js</div>
+                <div class="skill">Git & GitHub</div>
+                <div class="skill">Responsive Design</div>
+                <div class="skill">UI/UX</div>
+            </div>
+        </section>
+        <section class="projects" id="projects">
+            <h2 style="color:var(--primary);font-size:2rem;">Projects</h2>
+            <div class="project-list">
+                <div class="project">
+                    <h3>Modern Portfolio</h3>
+                    <p>A fully responsive, animated portfolio website built with HTML, CSS, and JavaScript.</p>
+                    <a href="#" target="_blank">View Demo</a>
+                </div>
+                <div class="project">
+                    <h3>Task Manager App</h3>
+                    <p>A productivity app to manage daily tasks, built with React and Node.js.</p>
+                    <a href="#" target="_blank">View Demo</a>
+                </div>
+                <div class="project">
+                    <h3>Landing Page UI</h3>
+                    <p>Beautiful landing page with smooth animations and modern design.</p>
+                    <a href="#" target="_blank">View Demo</a>
+                </div>
+            </div>
+        </section>
+        <section class="contact" id="contact">
+            <h2 style="color:var(--primary);font-size:2rem;">Contact Me</h2>
+            <form class="contact-form" id="contact-form">
+                <input type="text" name="name" placeholder="Your Name" required />
+                <input type="email" name="email" placeholder="Your Email" required />
+                <textarea name="message" rows="4" placeholder="Your Message" required></textarea>
+                <button type="submit">Send Message</button>
+                <div id="form-status" style="margin-top:0.5rem;font-size:1rem;"></div>
+            </form>
+        </section>
+    </main>
+    <footer class="footer">
+        &copy; 2025 Nikhil Gupta. All rights reserved.
+    </footer>
+    <script>
+        // Responsive nav
+        const menuToggle = document.getElementById('menu-toggle');
+        const navLinks = document.getElementById('nav-links');
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            menuToggle.classList.toggle('open');
+        });
+        // Close nav on link click (mobile)
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                menuToggle.classList.remove('open');
+            });
+        });
+        // Animated scroll for nav links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        // Contact form (demo only)
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const status = document.getElementById('form-status');
+            status.textContent = 'Sending...';
+            setTimeout(() => {
+                status.textContent = 'Thank you for reaching out! I will get back to you soon.';
+                this.reset();
+            }, 1200);
+        });
+        // Header shadow on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if(window.scrollY > 30) {
+                header.style.background = 'var(--secondary)';
+                header.style.boxShadow = '0 2px 12px #0002';
+            } else {
+                header.style.background = 'var(--secondary)';
+                header.style.boxShadow = '0 2px 8px #0001';
+            }
+        });
+    </script>
+</body>
+</html> 
